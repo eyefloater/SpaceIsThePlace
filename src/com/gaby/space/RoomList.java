@@ -1,14 +1,14 @@
-package com.gaby.space;
+/*package com.gaby.space;
 
 import com.gaby.space.RoomList.Room;
 
 public class RoomList {
 	
-	/*
+	
 	   accessible from which other rooms?
 	   objects in room (database)
 	 * 
-	 */
+	 
 	
 	public enum Room {
 		FLAT(new String[] {"LOBBY", "REHEARSAL_ROOM", "SPACEBAR"}),
@@ -35,3 +35,4 @@ public class RoomList {
 	
 	
 }
+*/

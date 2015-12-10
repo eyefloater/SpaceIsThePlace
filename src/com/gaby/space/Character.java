@@ -24,22 +24,32 @@ status -
 	inventory -
 		
  */
+	
 	private boolean isAlive;
 	private int health;
 	private int hope;
 	private int grace;
-	private Room location;
+	static int location = 1;
 	
-	public Character() {};
-	
-	private void takeObject(Object obj, Character actor) {
-		if (obj.location == actor.location)
-		{ 
-			obj.location = Room.INVENTORY;
-		}
-		else
-		{
-			System.out.println("ERROR!");
-		}	
+	public Character() {}
+
+	public static int getLocation() {
+		return location;
 	}
+
+	public void setLocation(int location) {
+		this.location = location;
+	};
+	
+	//using database for objects for now
+//	private void takeObject(Object obj, Character actor) {
+//		if (obj.location == actor.location)
+//		{ 
+//			obj.location = Room.INVENTORY;
+//		}
+//		else
+//		{
+//			System.out.println("ERROR!");
+//		}	
+//	}
 }
