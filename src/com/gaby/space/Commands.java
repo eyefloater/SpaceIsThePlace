@@ -94,14 +94,14 @@ public class Commands {
 	}
 
 	public static void examineObject(String command) {
+		//removes 'look at ' from command, leaving name of object
 		String objectToLookAt = command.substring(7);
 		try {
 			java.sql.Statement statement = connection.createStatement();
 
-			// getting the data back
 
-			// get room description from a ResultSet
-			ResultSet res = statement.executeQuery("SELECT OBJECT FROM OBJECTS WHERE NAME ="+objectToLookAt);
+			// get object description from a ResultSet
+			ResultSet res = statement.executeQuery("SELECT DESCRIPTION FROM OBJECTS WHERE NAME ="+objectToLookAt);
 			
 		
 			while (res.next()) {
