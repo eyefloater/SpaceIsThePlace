@@ -1,6 +1,6 @@
 package com.gaby.space;
 
-import com.gaby.space.RoomList.Room;
+//import com.gaby.space.RoomList.Room;
 
 public class Character {
 /*player class

@@ -12,8 +12,6 @@ public class Game {
 		return connection;
 	}
 
-	// the room id
-
 	public Game(Connection connection) {
 		this.connection = connection;
 		
@@ -23,7 +21,7 @@ public class Game {
 			Scanner scanner = new Scanner(System.in);
 			String command = scanner.nextLine();
 			command.toLowerCase();
-			if(command.equals("help")){Commands.listCommands();
+			if(command.equals("help")){Commands.listCommands();}
 			if(command.equals("look")){Commands.examineRoom();}
 			if(command.contains("take")){Commands.takeObject(command);}
 			if(command.equals("i")){Commands.printInventory();}
@@ -39,12 +37,14 @@ public class Game {
 		} while (true);
 
 		// read data base configuration
-
+		
+		
 	}
 
 	public void start() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
+	

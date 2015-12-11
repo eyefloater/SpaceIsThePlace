@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 
 public class Commands {
 	private static Connection connection = Game.getConnection();
-	this.connection = connection;
+	//this.connection = connection;
 
 
 	public static void examineRoom() {

@@ -1,6 +1,6 @@
 package com.gaby.space;
 
-import com.gaby.space.RoomList.Room;
+//import com.gaby.space.RoomList.Room;
 
 public class Object {
 	
@@ -14,7 +14,7 @@ public class Object {
 	 */
 	
 	public String possessedBy;
-	public Room location;
+	//public Room location;
 	
 	
 }
