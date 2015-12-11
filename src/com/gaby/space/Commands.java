@@ -20,7 +20,7 @@ public class Commands {
 							+ Character.location);
 
 			while (res.next()) {
-				System.out.println(res.getString("DESCRIPTION"));
+				System.out.println("\n"+res.getString("DESCRIPTION"));
 			}
 			res.close();
 			statement.close();
@@ -63,7 +63,7 @@ public class Commands {
 
 			// get room description from a ResultSet
 			int inv = 1;
-			ResultSet res = statement.executeQuery("SELECT OBJECT FROM OBJECTS WHERE LOCATION ="+inv);
+			ResultSet res = statement.executeQuery("SELECT OBJECT FROM OBJECTS WHERE LOCATION = 1");
 		
 			while (res.next()) {
 			

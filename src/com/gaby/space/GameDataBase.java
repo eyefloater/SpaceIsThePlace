@@ -66,9 +66,9 @@ public class GameDataBase {
 			//rooms have two columns: an integer ID (primary key) and a varchar (string) for its name	
 			stmt.execute("CREATE SCHEMA GAMESCHEMA AUTHORIZATION ME");
 			
-			stmt.execute("CREATE TABLE ROOMS (ID INT, NAME VARCHAR(12), DESCRIPTION VARCHAR(128))");
+			stmt.execute("CREATE TABLE ROOMS (ID INT, NAME VARCHAR(20), DESCRIPTION VARCHAR(8000))");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (1, 'Inventory', '')");
-			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (2, 'Second', 'Blue walls')");
+			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (2, 'Lunar Surface', 'The sun has just dipped out of sight. The smooth surface of the lunar plain extends to the horizon. \nGOO parks his 2-track just off the road, climbs out with a spare tank and looks back up the road as he shuts the door. \nTo the North, the Medtronic enclave with its vast dome of age-warped, slightly murky plastic. \n\nGOO turns, feeling a little weak in the legs as he scrambles down the embankment to stride \nout into the silent, glimmering lunar countryside.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (3, 'Third','Blue walls')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (4, 'Fourth','Blue walls')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (5, 'Fifth','Blue walls')");
@@ -83,8 +83,9 @@ public class GameDataBase {
 			stmt.execute("INSERT INTO DOORS (ID, ROOM1, ROOM2) VALUES (6, 6, 1)");
 			
 			stmt.execute("CREATE TABLE OBJECTS (ID INT, LOCATION INT, NAME VARCHAR(12), DESCRIPTION VARCHAR(64), OWNED BOOLEAN)");
-			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (1, 2, 'GUITAR', 'The guitar is red.', FALSE)");
-			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (2, 2, 'CUP', 'The cup says I LOVE NY.', FALSE)");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (1, 1, 'tank', 'Goo likes breathing', FALSE)");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (2, 2, 'GUITAR', 'The guitar is red.', FALSE)");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (3, 2, 'CUP', 'The cup says I LOVE NY.', FALSE)");
 			
 			//commiting sends it from client to the database, checks for errors
 			connection.commit();

@@ -29,7 +29,7 @@ status -
 	private int health;
 	private int hope;
 	private int grace;
-	static int location = 1;
+	static int location = 2;
 	
 	public Character() {}
 

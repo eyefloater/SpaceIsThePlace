@@ -15,9 +15,12 @@ public class Game {
 	public Game(Connection connection) {
 		this.connection = connection;
 		
-
+		System.out.println("sPaCe Is ThE pLaCe\n");
+		Commands.listCommands();
+		Commands.examineRoom();
 		do {
-			System.out.println("Enter a command:");
+		
+			System.out.println("\nEnter a command:");
 			Scanner scanner = new Scanner(System.in);
 			String command = scanner.nextLine();
 			command.toLowerCase();
