@@ -5,49 +5,53 @@ package com.gaby.space;
 //there's only one main character, might as well be an abstract class i think
 public abstract class Character {
 
-	//death at 0 health;
-	private int health = 5;
 	private static int location;
+	private static int hope;
 
 	private static boolean hasSaxophone;
 	private static boolean hasBassPlayer;
 	private static boolean hasDrummer;
 	private static boolean hasPracticed;
 	private static boolean isAlive;
+	private static boolean hasSuitOn;
 
-	public int getHealth() {
-		return health;
+	public static int getHope() {
+		return hope;
+	}
+	
+	public static void setHope(int hope) {
+		Character.hope = hope;
 	}
 
-	public void setHealth(int health) {
-		this.health = health;
+	public static void decrementHope(int hopeDeduction) {
+		hope = hope - hopeDeduction;
 	}
 
-	public boolean isAlive() {
+	public static boolean isAlive() {
 		return isAlive;
 	}
 
-	public void setAlive(boolean isAlive) {
+	public static void setIsAlive(boolean isAlive) {
 		Character.isAlive = isAlive;
 	}
 
-	public boolean isHasSaxophone() {
+	public static boolean hasSaxophone() {
 		return hasSaxophone;
 	}
 
-	public void setHasSaxophone(boolean hasSaxophone) {
+	public static void setHasSaxophone(boolean hasSaxophone) {
 		Character.hasSaxophone = hasSaxophone;
 	}
 
-	public boolean isHasBassPlayer() {
+	public static boolean hasBassPlayer() {
 		return hasBassPlayer;
 	}
 
-	public void setHasBassPlayer(boolean hasBassPlayer) {
+	public static void setHasBassPlayer(boolean hasBassPlayer) {
 		Character.hasBassPlayer = hasBassPlayer;
 	}
 
-	public boolean isHasDrummer() {
+	public boolean hasDrummer() {
 		return hasDrummer;
 	}
 
@@ -55,7 +59,7 @@ public abstract class Character {
 		Character.hasDrummer = hasDrummer;
 	}
 
-	public static boolean isHasPracticed() {
+	public static boolean hasPracticed() {
 		return hasPracticed;
 	}
 
@@ -69,6 +73,14 @@ public abstract class Character {
 
 	public static void setLocation(int location) {
 		Character.location = location;
+	}
+
+	public static boolean hasSuitOn() {
+		return hasSuitOn;
+	}
+
+	public static void setHasSuitOn(boolean hasSuitOn) {
+		Character.hasSuitOn = hasSuitOn;
 	}
 
 }

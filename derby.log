@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri Dec 11 20:48:35 CST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0151-9417-055f-0000070c1ae8 
+Sat Dec 12 03:37:19 CST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0151-958d-3815-000007168638 
 on database directory memory:C:\workspace\SpacePlace\GAMEDB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 Loaded from file:/C:/workspace/SpacePlace/libs/derby.jar
 java.vendor=Oracle Corporation
