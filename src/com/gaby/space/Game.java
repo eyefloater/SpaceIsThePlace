@@ -16,6 +16,7 @@ public class Game {
 		this.connection = connection;
 		
 		System.out.println("sPaCe Is ThE pLaCe\n");
+		Character.setLocation(2);
 		Commands.listCommands();
 		Commands.examineRoom();
 		do {
@@ -33,6 +34,8 @@ public class Game {
 			if(command.equals("e")){Commands.move(command);}
 			if(command.equals("s")){Commands.move(command);}
 			if(command.equals("w")){Commands.move(command);}
+			if(command.equals("get location")){int location = Character.getLocation(); System.out.println(location);}
+
 
 
 			

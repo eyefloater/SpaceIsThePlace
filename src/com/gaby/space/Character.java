@@ -2,54 +2,73 @@ package com.gaby.space;
 
 //import com.gaby.space.RoomList.Room;
 
-public class Character {
-/*player class
-status -
-    isAlive? -
-        if(isAlive=false{print "You died!"; Startup.endGame}
-    health -
-        if(health <1){isAlive=false}
-    hope -
-        if(hope <1){"You gave up!"; Startup.endGame}
-    grace -
-        determines quality of musical performance, affected by food, inspiration, bandmates
-    location -
-        rooms numbered. after every "pickup key" check if key is in same location, if not, "There's no key here"
-	list of actions
+//there's only one main character, might as well be an abstract class i think
+public abstract class Character {
 
-	takeObject -
-		checks if player is in room, then moves object from room to inventory,
-		then edits text file to remove object from description of room_
+	//death at 0 health;
+	private int health = 5;
+	private static int location;
 
-	inventory -
-		
- */
-	
-	private boolean isAlive;
-	private int health;
-	private int hope;
-	private int grace;
-	static int location = 2;
-	
-	public Character() {}
+	private static boolean hasSaxophone;
+	private static boolean hasBassPlayer;
+	private static boolean hasDrummer;
+	private static boolean hasPracticed;
+	private static boolean isAlive;
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		Character.isAlive = isAlive;
+	}
+
+	public boolean isHasSaxophone() {
+		return hasSaxophone;
+	}
+
+	public void setHasSaxophone(boolean hasSaxophone) {
+		Character.hasSaxophone = hasSaxophone;
+	}
+
+	public boolean isHasBassPlayer() {
+		return hasBassPlayer;
+	}
+
+	public void setHasBassPlayer(boolean hasBassPlayer) {
+		Character.hasBassPlayer = hasBassPlayer;
+	}
+
+	public boolean isHasDrummer() {
+		return hasDrummer;
+	}
+
+	public static void setHasDrummer(boolean hasDrummer) {
+		Character.hasDrummer = hasDrummer;
+	}
+
+	public static boolean isHasPracticed() {
+		return hasPracticed;
+	}
+
+	public static void setHasPracticed(boolean hasPracticed) {
+		Character.hasPracticed = hasPracticed;
+	}
 
 	public static int getLocation() {
 		return location;
 	}
 
-	public void setLocation(int location) {
-		this.location = location;
-	};
-	
-	//using database for objects for now
-//	private void takeObject(Object obj, Character actor) {
-//		if (obj.location == actor.location)
-//		{ 
-//			obj.location = Room.INVENTORY;
-//		}
-//		else
-//		{
-//			System.out.println("ERROR!");
-//		}	
-//	}
+	public static void setLocation(int location) {
+		Character.location = location;
+	}
+
 }

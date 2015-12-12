@@ -66,12 +66,15 @@ public class GameDataBase {
 			//rooms have two columns: an integer ID (primary key) and a varchar (string) for its name	
 			stmt.execute("CREATE SCHEMA GAMESCHEMA AUTHORIZATION ME");
 			
+			//database of 'rooms'. 
 			stmt.execute("CREATE TABLE ROOMS (ID INT, NAME VARCHAR(20), DESCRIPTION VARCHAR(8000))");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (1, 'Inventory', '')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (2, 'Lunar Surface', 'The sun has just dipped out of sight. The smooth surface of the lunar plain extends to the horizon. \nGOO parks his 2-track just off the road, climbs out with a spare tank and looks back up the road as he shuts the door. \nTo the North, the Medtronic enclave with its vast dome of age-warped, slightly murky plastic. \n\nGOO turns, feeling a little weak in the legs as he scrambles down the embankment to stride \nout into the silent, glimmering lunar countryside.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (3, 'Boardwalk','The boardwalk that runs along the Zone's northern boundary extends before GOO, its stained plastic planks lit with overlapping planes of garish neon reds, blues, and sickly greens that emanate from the dense jumble of tourist shops that loom over its landward side. To the west, , behind the flickering, 100 year old projected ocean view, GOO can hear the grinding and hum of the platinum mines. GOO's family property is a single 4-story tower of corrugated tin and plastic wedged between a brothel and a PayDay Loan shop. Outside his grandfather's ground floor cafe, a dozen folded Fanta Limon parasols emerge haphazardly from a jumble of plastic tables, flapping lamely in the artificial ocean-scented breeze. Inside, the cafe is brightly lit but deserted; GOO's friend Agnes is washing glasses. Two brothel workers puff on E-cigarettes at the mouth of the narrow alley, wrapped in long, silvery miner's jackets, clearly at the end of their shift.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (4, 'Space Bar','THE SPACIOUS SPACE BAR, as the neon sign proclaims is in fact quite a spacious place. It is completely deserted, except for Agnes, who is washing an endless series of glasses in the sink behind the counter. The stereo is playing the usual mixture of 20th century ye-ye, country, and modern Algorhythmia pop. What dross.')");
 			
+			//probably get rid of this. openDoor can just be a method that is called to check if you have a key, when 
+			//you enter N S E or W and there is a door in the way. 
 			stmt.execute("CREATE TABLE DOORS (ID INT, ROOM1 INT, ROOM2 INT)");
 			stmt.execute("INSERT INTO DOORS (ID, ROOM1, ROOM2) VALUES (1, 1, 2)");
 			stmt.execute("INSERT INTO DOORS (ID, ROOM1, ROOM2) VALUES (2, 2, 3)");
@@ -80,11 +83,12 @@ public class GameDataBase {
 			stmt.execute("INSERT INTO DOORS (ID, ROOM1, ROOM2) VALUES (5, 5, 6)");
 			stmt.execute("INSERT INTO DOORS (ID, ROOM1, ROOM2) VALUES (6, 6, 1)");
 			
+			//database of all objects, including those in inventory, which is represented as room 1.
 			stmt.execute("CREATE TABLE OBJECTS (ID INT, LOCATION INT, NAME VARCHAR(12), DESCRIPTION VARCHAR(64), OWNED BOOLEAN)");
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (1, 1, 'tank', 'Goo likes breathing', FALSE)");
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (1, 2, 'moon rock', 'Shiny moon rock', FALSE)");
-			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (2, 2, 'GUITAR', 'The guitar is red.', FALSE)");
-			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (3, 4, 'CUP', 'The cup says I LOVE NY.', FALSE)");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (2, 2, 'Sun Ra's saxophone', 'The real deal.', FALSE)");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION, OWNED) VALUES (3, 4, 'CUP', 'The cup says I LOVE NY. GOO has no idea what ny means or how it's pronounced.', FALSE)");
 			
 			//commiting sends it from client to the database, checks for errors
 			connection.commit();
