@@ -22,6 +22,13 @@ public class Game {
 		Character.setHope(40);
 		Character.setHasSuitOn(true);
 		Character.setIsAlive(true);
+		Character.setHasHugoCredits(false);
+		Character.setHasRover(false);
+		Character.setHasDrums(false);
+		
+		Dialog.setNicoCounter(1);
+		Dialog.setAggieCounter(1);
+		Dialog.setLouisCounter(1);
 		Commands.examineRoom();
 		do {
 
@@ -37,6 +44,9 @@ public class Game {
 			}
 			if (command.contains("take")) {
 				Commands.takeObject(command);
+			}
+			if (command.contains("drop")) {
+				Commands.dropObject(command);
 			}
 			if (command.equals("i")) {
 				Commands.printInventory();
@@ -56,6 +66,16 @@ public class Game {
 			if (command.equals("w")) {
 				Commands.move(command);
 			}
+			
+			
+			if (command.contains("talk to")) {
+				Commands.talk(command);
+			}
+			if (command.contains("move box")) {
+				Commands.moveBox();
+			}
+			
+			
 			if (command.equals("get location")) {
 				int location = Character.getLocation();
 				System.out.println(location);

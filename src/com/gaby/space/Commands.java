@@ -12,15 +12,7 @@ public class Commands {
 	// bold/diff color?
 	public static void examineRoom() {
 		try {
-			java.sql.Statement statement = connection.createStatement( /*
-																		 * ResultSet
-																		 * .
-																		 * TYPE_SCROLL_INSENSITIVE
-																		 * ,
-																		 * ResultSet
-																		 * .
-																		 * CONCUR_UPDATABLE
-																		 */);
+			java.sql.Statement statement = connection.createStatement();
 
 			// getting the data back
 
@@ -42,31 +34,49 @@ public class Commands {
 
 	public static void examineObject(String command) {
 		// removes 'look at ' from command, leaving name of object
-		String objectToLookAt = command.substring(7);
+		String objectToLookAt = command.substring(8);
 		try {
 			java.sql.Statement statement = connection.createStatement();
-			String query = "SELECT DESCRIPTION FROM OBJECTS WHERE NAME = "
-					+ objectToLookAt;
+			String query = "SELECT * FROM OBJECTS WHERE NAME ='"
+					+ objectToLookAt + "'";
 			// get object description from a ResultSet
 			ResultSet res = statement.executeQuery(query);
+			boolean first = res.next();
+			if (first == true) {
+				// res.getString("DESCRIPTION");
+				System.out.println(res.getString(4));
+			}
+			// System.out.println(res);
 
-			// while (res.next()) {
-			// res.getString("DESCRIPTION");
-			// System.out.println(res.getString(4));
-			System.out.println(res);
-
-			// }
 			res.close();
 			statement.close();
 		} catch (Exception e) {
-			System.err.println("Exception: " + e.getMessage());
+			// System.err.println("Exception: " + e.getMessage());
+			System.out.println("There is no " + objectToLookAt + " here.");
 		}
 	}
 
 	// assumes entry like "take rock", and strips first 5 characters, hopefully
 	// leaving the name of the object as it is in the database.
 	public static void takeObject(String command) {
+		int location = Character.getLocation();
 		String objectToTake = command.substring(5);
+
+		if (objectToTake.equals("id")) {
+			Character.setHasID();
+		}
+		if (objectToTake.equals("rover")) {
+			Character.setHasRover(true);
+		}
+
+		if (objectToTake.equals("leather jacket")) {
+			Character.setHasLeatherJacket();
+		}
+		if (objectToTake.equals("lanyard")) {
+			Character.setHasLanyard();
+		}
+
+		String name = "";
 		try {
 			java.sql.Statement statement = connection.createStatement();
 
@@ -74,23 +84,117 @@ public class Commands {
 
 			// get room description from a ResultSet
 			ResultSet res = statement
-					.executeQuery("SELECT OBJECT FROM OBJECTS WHERE NAME ="
-							+ objectToTake);
+					.executeQuery("SELECT * FROM OBJECTS WHERE (NAME ='"
+							+ objectToTake + "' AND LOCATION =" + location
+							+ ")");
+			boolean first = res.next();
+			name = res.getString(3);
+			if (first == true) {
 
-			while (res.next()) {
 				// changes location to inventory (will be room 1)
-				res.updateInt(2, 1);
-				System.out.println("Goo takes the "
-						+ res.getString("objectToTake"));
+				// res.updateInt(2, 1);
+				statement = connection.createStatement();
+				int result = statement
+						.executeUpdate("UPDATE OBJECTS SET LOCATION = 1 WHERE NAME = '"
+								+ objectToTake + "'");
+				System.out.println("GOO takes the " + name);
+				connection.commit();
+
+				res.close();
+				statement.close();
 			}
-			res.close();
-			statement.close();
 		} catch (Exception e) {
-			System.err.println("Exception: " + e.getMessage());
+			// System.err.println("Exception: " + e.getMessage());
+
+			System.out.println("There is no " + objectToTake + " here.");
+		}
+
+	}
+	
+	public static void dropObject(String command) {
+		int location = Character.getLocation();
+		String objectToDrop = command.substring(5);
+
+		/*if (objectToTake.equals("id")) {
+			Character.setHasID();
+		}
+		if (objectToTake.equals("leather jacket")) {
+			Character.setHasLeatherJacket();
+		}
+		if (objectToTake.equals("lanyard")) {
+			Character.setHasLanyard();
+		}*/
+
+		String name = "";
+		try {
+			java.sql.Statement statement = connection.createStatement();
+
+			// getting the data back
+
+			// get object from a ResultSet
+			ResultSet res = statement
+					.executeQuery("SELECT * FROM OBJECTS WHERE (NAME = '"
+							+ objectToDrop + "' AND LOCATION = 1)");
+			boolean first = res.next();
+			name = res.getString(3);
+			if (first == true) {
+
+				statement = connection.createStatement();
+				int result = statement
+						.executeUpdate("UPDATE OBJECTS SET LOCATION = "+location+" WHERE NAME = '"
+								+ objectToDrop + "'");
+				System.out.println("GOO drops the " + name);
+				connection.commit();
+
+				res.close();
+				statement.close();
+			}
+		} catch (Exception e) {
+			// System.err.println("Exception: " + e.getMessage());
+
+			System.out.println("You don't have a " + objectToDrop);
 		}
 
 	}
 
+	public static void moveSunRaToLunarPlain(){
+		int location = Character.getLocation();
+		String sunra = "sun ra";
+
+
+		String name = "";
+		try {
+			java.sql.Statement statement = connection.createStatement();
+
+			// getting the data back
+
+			// get object from a ResultSet
+			ResultSet res = statement
+					.executeQuery("SELECT * FROM OBJECTS WHERE NAME = '"+ sunra+"'");
+			boolean first = res.next();
+			name = res.getString(3);
+			if (first == true) {
+
+				statement = connection.createStatement();
+				int result = statement
+						.executeUpdate("UPDATE OBJECTS SET LOCATION = "+2+" WHERE NAME = '"
+								+ sunra + "'");
+				System.out.println("Sun Ra is outta here");
+				connection.commit();
+
+				res.close();
+				statement.close();
+			}
+		} catch (Exception e) {
+			// System.err.println("Exception: " + e.getMessage());
+
+			System.out.println("You don't have a " + sunra);
+		}
+
+	}
+		
+		
+	
 	// inventory is room 1, so prints every object in room 1
 	public static void printInventory() {
 		try {
@@ -101,11 +205,11 @@ public class Commands {
 			// get room description from a ResultSet
 			int inv = 1;
 			ResultSet res = statement
-					.executeQuery("SELECT OBJECT FROM OBJECTS WHERE LOCATION = 1");
+					.executeQuery("SELECT * FROM OBJECTS WHERE LOCATION = 1");
 
 			while (res.next()) {
-
-				System.out.println(res);
+				String name = res.getString(3);
+				System.out.println(name);
 			}
 			res.close();
 			statement.close();
@@ -123,6 +227,7 @@ public class Commands {
 		System.out.println("look at ___ - to examine people and objects");
 		System.out.println("take object");
 		System.out.println("drop object");
+		System.out.println("drop object");
 		System.out.println("N, E, S, W - to move");
 		System.out.println("Play ___ - to play an instrument");
 		System.out.println("Eat ___, Drink ___, - be reasonable, ok?");
@@ -131,10 +236,11 @@ public class Commands {
 		System.out.println("help - view this list");
 
 	}
-	
-	public static void removeSuit(){
+
+	public static void removeSuit() {
 		Character.setHasSuitOn(false);
-		System.out.println("GOO removes his spacesuit. Feels good. A little dip in the ocean would be perfect right now. Well, there's no ocean. :<");
+		System.out
+				.println("GOO removes his spacesuit. Feels good. A little dip in the ocean would be perfect right now. Well, there's no ocean. :<");
 	}
 
 	public static void move(String command) {
@@ -190,13 +296,20 @@ public class Commands {
 				examineRoom();
 				break;
 			}
+			if (command.equals("w")) {
+				if (Character.hasID()) {
+					Dialog.charlie();
+					Character.setLocation(12);
+					examineRoom();
+					break;
+				} else {
+					System.out
+							.println("Charlie steps forward and drawls, 'Sorry old friend, you need your Medtronic ID badge or I can't let you onto company property.'");
+					break;
+				}
+			}
 			if (command.equals("e")) {
 				Character.setLocation(7);
-				examineRoom();
-				break;
-			}
-			if (command.equals("w")) {
-				Character.setLocation(12);
 				examineRoom();
 				break;
 			} else {
@@ -234,9 +347,15 @@ public class Commands {
 
 		case 7: // boardwalk east
 			if (command.equals("n")) {
-				Character.setLocation(8);
-				examineRoom();
-				break;
+				if (Character.hasLeatherJacket()) {
+					Character.setLocation(8);
+					examineRoom();
+					break;
+				} else {
+					System.out
+							.println("The doorman sniffs at your miner's clothing. \"Sorry pal, you're not getting in looking like that. This club is for cool, neato rockers. No miners allowed.\"");
+					break;
+				}
 			}
 			if (command.equals("w")) {
 				Character.setLocation(4);
@@ -315,9 +434,16 @@ public class Commands {
 				break;
 			}
 			if (command.equals("w")) {
-				Character.setLocation(14);
-				examineRoom();
-				break;
+				if (Character.hasLanyard() == true) {
+					Character.setLocation(14);
+					examineRoom();
+					break;
+				} else {
+					System.out
+							.println("GOO loves all spaceships. But this one is particularly rad. "
+									+ "Very sleek cruise liner, in the classic featureless-silver-cube style of the 2240''s. Only passengers and crew can board, and GOO is currently neither.");
+					break;
+				}
 			}
 			if (command.equals("e")) {
 				Character.setLocation(4);
@@ -356,8 +482,14 @@ public class Commands {
 
 	}
 
+	public static void moveBox(){
+		System.out
+		.println("GOO slides the box to one side, noticing that it's painted a rich shade of gold. \nIt's actually not a box at all, but the entrance to some kind of temple structure, deep beneath the moon. \nAfter descending staircase upon collonaded staircase, GOO finally reaches the bottom, \nwhere in the center of a bejewelled chamber glowing red with a hundred floating lights, sits a man. \nIt is Sun Ra.");
+	
+	}
 	public static void talk(String command) {
-		// dialog trees maybe stored in own class?
+		String npc = command.substring(8);
+		Dialog.talk(npc);
 	}
 
 }
