@@ -2,23 +2,29 @@ package com.gaby.space;
 
 //import com.gaby.space.RoomList.Room;
 
-//there's only one main character, might as well be an abstract class i think
+//there's only one main character, so i've represented him with this abstract class
 public abstract class Character {
 
+	//location, used a lot.
 	private static int location;
+	
 	private static int hope;
-
-	private static boolean hasSaxophone;
-	private static boolean hasPracticed;
-	private static boolean isAlive;
-	private static boolean hasSuitOn;
-	private static boolean hasID;
-	private static boolean hasLanyard;
-	private static boolean hasLeatherJacket;
+	
+	//these are states that need to change for the player to advance the plot. used getters and setters.
+	
+	private static boolean hasLanyard; //gets GOO hired onto spaceship to WIN. player needs saxophone, drums, and a big idea to get gig
+	
 	private static boolean hasBigIdea;
-	private static boolean hasRover;
-	private static boolean hasHugoCredits;
 	private static boolean hasDrums;
+	private static boolean hasSaxophone;
+	
+	private static boolean hasID; //needed to get past security guard
+	private static boolean hasLeatherJacket; //needed to get into nightclub
+	private static boolean hasRover; //traded for credits
+	private static boolean hasCreditCube;  //used to buy drums
+	
+	private static boolean isAlive; 
+	private static boolean hasSuitOn; //removable to die on the moon
 
 	public static int getHope() {
 		return hope;
@@ -46,14 +52,6 @@ public abstract class Character {
 
 	public static void setHasSaxophone(boolean hasSaxophone) {
 		Character.hasSaxophone = hasSaxophone;
-	}
-
-	public static boolean hasPracticed() {
-		return hasPracticed;
-	}
-
-	public static void setHasPracticed(boolean hasPracticed) {
-		Character.hasPracticed = hasPracticed;
 	}
 
 	public static int getLocation() {
@@ -86,8 +84,8 @@ public abstract class Character {
 		return hasLanyard;
 	}
 
-	public static void setHasLanyard() {
-		Character.hasLanyard = true;
+	public static void setHasLanyard(boolean hasLanyard) {
+		Character.hasLanyard = hasLanyard;
 	}
 
 	public static boolean hasLeatherJacket() {
@@ -101,8 +99,8 @@ public abstract class Character {
 		return hasBigIdea;		
 	}
 
-	public static void setHasBigIdea() {
-		Character.hasBigIdea = true;
+	public static void setHasBigIdea(boolean hasBigIdea) {
+		Character.hasBigIdea = hasBigIdea;
 		
 	}
 
@@ -116,16 +114,7 @@ public abstract class Character {
 		
 	}
 
-	public static boolean hasHugoCredits() {
-		return hasHugoCredits;
-		
-	}
-	public static void setHasHugoCredits(boolean hasHugoCredits) {
-		Character.hasHugoCredits = hasHugoCredits;
-		
-	}
-
-	public static void setHasDrums(boolean b) {
+	public static void setHasDrums(boolean hasDrums) {
 		Character.hasDrums = hasDrums;
 		
 	}
@@ -134,5 +123,13 @@ public abstract class Character {
 		
 	}
 
+	public static void setHasCreditCube(boolean hasCreditCube) {
+		Character.hasCreditCube = hasCreditCube;
+		
+	}
+	public static boolean hasCreditCube() {
+		return hasCreditCube;
+		
+	}
 
 }
