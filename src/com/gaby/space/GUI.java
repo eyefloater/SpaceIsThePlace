@@ -41,7 +41,7 @@ public class GUI {
 		results.setBackground(Color.black);
 
 		// set font
-		Font font = new Font("Arial", Font.BOLD, 12);
+		Font font = new Font("Arial", Font.BOLD, 16);
 		results.setFont(font);
 		results.setForeground(Color.WHITE);
 		results.setCaretColor(Color.DARK_GRAY);
@@ -53,6 +53,7 @@ public class GUI {
 		results.setWrapStyleWord(true);
 		results.setText("");
 		panel.add(scrollPaneResults);
+		results.setCaretPosition(0);
 
 		// dialog is displayed in options panel
 		options = new JTextArea(20, 10);
@@ -63,7 +64,7 @@ public class GUI {
 		options.setCaretColor(Color.DARK_GRAY);
 
 		// set font
-		Font font2 = new Font("Arial", Font.BOLD, 12);
+		Font font2 = new Font("Arial", Font.BOLD, 14);
 		options.setFont(font2);
 
 		options.setForeground(Color.WHITE);
@@ -71,6 +72,8 @@ public class GUI {
 		options.setWrapStyleWord(true);
 		options.setText("");
 		panel.add(scrollPanelOptions);
+		options.setCaretPosition(0);
+
 
 		// panel just lists the actions player can perform (although there a
 		// couple that appear later in the game: move box, take off suit.
@@ -80,7 +83,7 @@ public class GUI {
 		commands.setBounds(8, 8, 200, 444);
 
 		// set font
-		Font font3 = new Font("Arial", Font.BOLD, 12);
+		Font font3 = new Font("Arial", Font.BOLD, 14);
 		commands.setFont(font3);
 		commands.setForeground(Color.LIGHT_GRAY);
 		commands.setText("");
@@ -92,7 +95,7 @@ public class GUI {
 		inventory.setEditable(false);
 		inventory.setBackground(Color.BLACK);
 		inventory.setBounds(724, 8, 200, 444);
-		Font font4 = new Font("Arial", Font.BOLD, 12);
+		Font font4 = new Font("Arial", Font.BOLD, 14);
 		inventory.setFont(font4);
 		inventory.setForeground(Color.LIGHT_GRAY);
 		inventory.setText("");
@@ -160,6 +163,8 @@ public class GUI {
 	// prints text to the results pane
 	public static void showResults(String text) {
 		results.setText(text);
+		results.setCaretPosition(0);
+
 	}
 
 	public static void clearCommands() {
@@ -198,6 +203,8 @@ public class GUI {
 	// prints text to options (dialog) pane
 	public static void addToOptions(String text) {
 		options.append(text);
+		options.setCaretPosition(0);
+
 	}
 
 }

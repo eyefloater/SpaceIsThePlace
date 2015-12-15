@@ -20,12 +20,14 @@ public class Commands {
 			//prints description to results pane
 			while (res.next()) {
 				GUI.showResults("\n" + res.getString("DESCRIPTION"));
+
 			}
 			res.close();
 			statement.close();
 		} catch (Exception e) {
 			GUI.showResults("Exception: " + e.getMessage());
 		}
+
 
 	}
 	//takes "take object" command, creates a substring with only the objects name, finds that in database, and prints that object's description to GUI
@@ -179,7 +181,7 @@ public class Commands {
 	                .executeQuery("SELECT * FROM OBJECTS WHERE LOCATION = 1");
 	 
 	        while (res.next()) {
-	            String name = "   " + res.getString(3);
+	            String name = " " + res.getString(3);
 	            GUI.showInventory(name);
 	        }
 	        res.close();
@@ -302,7 +304,6 @@ public class Commands {
 		if (Character.isAlive() == false) {
 			GUI.showResults("GOO is dead. \n\nGAME OVER.");
 
-			
 		}
 
 	}
