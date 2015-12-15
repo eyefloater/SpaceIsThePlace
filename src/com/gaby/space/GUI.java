@@ -173,10 +173,9 @@ public class GUI {
 	}
 
 	public static void showInventory(String text) {
-		inventory.setText("");
-		inventory.append(text + "\n");
-
+	    inventory.append(text + "\n");
 	}
+
 
 	public static void clearaInventory() {
 		inventory.setText("");

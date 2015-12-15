@@ -48,8 +48,9 @@ public class GameDataBase {
 			sqlExcept.printStackTrace();
 		}
 	}
-
-	/*
+	//source for database help:
+	/*http://docs.oracle.com/javase/7/docs/api/java/sql/ResultSet.html
+	 * 
 	 * to update a column value in the current row. In a scrollable ResultSet
 	 * object, the cursor can be moved backwards and forwards, to an absolute
 	 * position, or to a position relative to the current row. The following
@@ -83,13 +84,13 @@ public class GameDataBase {
 			stmt.execute("CREATE SCHEMA GAMESCHEMA AUTHORIZATION ME");
 
 			// database of rooms, FUTURE REVISION would probably have description print only the first
-			// time a room is entered, then print an abbreviated version
+			// time a room is entered, then print an abbreviated version. 
 			stmt.execute("CREATE TABLE ROOMS (ID INT, NAME VARCHAR(40), DESCRIPTION VARCHAR(7000))");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (1, 'Inventory', '')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (2, 'Lunar Surface SOUTH', 'About 100 clicks SOUTH of the Zone, GOO comes across an abandoned rover.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (3, 'Lunar Surface', 'The glimmering plains outside the Zone. To the NORTH lies the Medtronic enclave with it''s aging, yellowed dome.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (4, 'Boardwalk', 'Just inside the airlocks of the dome''s southern edge, the city''s boardwalk extends before GOO, its stained plastic planks lit with overlapping planes of garish neon reds, blues, and sickly greens that emanate from the dense jumble of shuttered tourist shops that loom over its landward side, facing the flickering, 100 year old projected ocean view that runs along the edge of the dome. \n\nTo the NORTH is GOO''s family business, the Space Bar Bar, a one story affair of corrugated plastic, wedged between a brothel and a PayDay Loan shop, both boarded up. A dozen folded Fanta Limon parasols emerge haphazardly from a jumble of plastic tables outside the bar, flapping lamely in the artificial ocean-scented breeze. The bar is brightly lit but deserted; GOO''s cousin Nico is washing glasses. \n\nTo the WEST, your old mining friend Charlie mans the Medtronic security gate, puffing an E-cigarete in his little booth. Beyond him, GOO can hear the grinding hum of Medtronic''s mining facilities. \n\nTo the EAST, the holographic marquee of the Jupiter Club rises out of the cityscape.')");
-			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (5, 'Space Bar Bar', 'THE SPACE BAR BAR is indeed quite spacious inside. It is also completely deserted, except for Nico, who stands washing an endless series of glasses in the sink behind the counter. The stereo is playing the usual mixture of 20th century ye-ye, country, and modern Algorhythmia pop. GOO sees his wallet ontop of the gaming console. GOO''s bedroom is in back, to the NORTH')");
+			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (5, 'Space Bar Bar', 'THE SPACE BAR BAR is indeed quite spacious inside. It is also completely deserted, except for Nico, who stands washing an endless series of glasses in the sink behind the counter. The stereo is playing the usual mixture of 20th century ye-ye, country, and contemporary Algorhythmia pop. GOO sees his wallet ontop of the gaming console, and his cup at a table. GOO''s bedroom is in back, to the NORTH')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (6, 'Back room', 'This is where GOO sleeps. There''s a small cot, a space heater, Goo''s record player and records, and a large and very dirty pile of clothes. Home sweet home. ')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (7, 'Boardwalk EAST', 'The eastern stretch of the Medtronic boardwalk is bustling with what passes for nightlife on 2270''s Luna. The Jupiter club, with it''s holographic marquee, is to the NORTH, Guitar Center is to the EAST.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (8, 'Jupiter Club', 'The doorman whistles appreciatively as you stroll into The Jupiter Club, polished leather gleaming.  It''s less busy than it used to be, when mining was still a viable career choice in this particular company town. Still, the house band, a motley group of Martian refugees called the Tireds From Mars is churning out some passable covers of 2050''s asteroid mining ballads. The manager, Louis, watches them with a glazed look on his face. ')");
@@ -121,9 +122,9 @@ public class GameDataBase {
 
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (9, 6, 'leather jacket', 'It''s black, it''s shiny, it says ''GO'' on the back in silver. Preeeeety rad.')");
 
-			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (10, 6, 'laser discs', 'A fine collection of space jazz.')");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (10, 6, 'laser discs', 'A fine collection of space jazz. Not playable til version 2.0. Sorry')");
 
-			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (11, 6, 'laser disc player', 'This thing must be 200 years old.')");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (11, 6, 'laser disc player', 'This thing must be 200 years old. It''l be broken ''til Space is the place 2.0.')");
 
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (12, 9, 'drumset', 'A beautiful, silver 5-piece jazz kit.')");
 

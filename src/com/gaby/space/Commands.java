@@ -169,24 +169,25 @@ public class Commands {
 
 	// inventory is room 1, so prints every object in room 1
 	public static void printInventory() {
-		try {
-			Connection connection = Game.getConnection();
-			java.sql.Statement statement = connection.createStatement();
-
-			// get room description from a ResultSet
-			ResultSet res = statement
-					.executeQuery("SELECT * FROM OBJECTS WHERE LOCATION = 1");
-
-			while (res.next()) {
-				String name = "   " + res.getString(3);
-				GUI.showInventory(name);
-			}
-			res.close();
-			statement.close();
-		} catch (Exception e) {
-			System.err.println("Exception: " + e.getMessage());
-		}
-
+		GUI.clearaInventory();
+	    try {
+	        Connection connection = Game.getConnection();
+	        java.sql.Statement statement = connection.createStatement();
+	 
+	        // get room description from a ResultSet
+	        ResultSet res = statement
+	                .executeQuery("SELECT * FROM OBJECTS WHERE LOCATION = 1");
+	 
+	        while (res.next()) {
+	            String name = "   " + res.getString(3);
+	            GUI.showInventory(name);
+	        }
+	        res.close();
+	        statement.close();
+	    } catch (Exception e) {
+	        System.err.println("Exception: " + e.getMessage());
+	    }
+	 
 	}
 
 	// command is "help", lists all commands
@@ -210,7 +211,7 @@ public class Commands {
 		GUI.showResults("GOO removes his spacesuit. Feels good. A little dip in the ocean would be perfect right now. Well, there's no ocean. Maybe a moon stroll then.");
 	}
 
-	//in original command line version, this was main game loop
+	//takes command from command line in GUI, looks for it here
 	public static void proccessCommand(String command) {
 		
 		//i keep track of who's being talked to with the talkingTo variable 
