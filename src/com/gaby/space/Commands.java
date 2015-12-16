@@ -45,7 +45,7 @@ public class Commands {
 			ResultSet res = statement.executeQuery(query);
 			boolean first = res.next();
 			if (first == true) {
-				// res.getString("DESCRIPTION");
+			
 				GUI.addToOptions(res.getString(4));
 			}
 			// System.out.println(res);
@@ -63,29 +63,7 @@ public class Commands {
 		int location = Character.getLocation();
 		String objectToTake = command.substring(5);
 
-		//objects important to plot, when acquired, produce state changes. you need hasID to be true, for example, to get past security
-		if (objectToTake.equals("id")) {
-			Character.setHasID();
-		}
-		if (objectToTake.equals("rover")) {
-			Character.setHasRover(true);
-		}
-
-		if (objectToTake.equals("leather jacket")) {
-			Character.setHasLeatherJacket();
-		}
-		if (objectToTake.equals("lanyards")) {
-			Character.setHasLanyard(true);
-		}
-		if (objectToTake.equals("credit cube")) {
-			Character.setHasCreditCube(true);
-		}
-		if (objectToTake.equals("drumset")) {
-			Character.setHasDrums(true);
-		}
-		if (objectToTake.equals("saxophone")) {
-			Character.setHasSaxophone(true);
-		}
+		
 
 		String name = "";
 		try {
@@ -102,7 +80,7 @@ public class Commands {
 			boolean first = res.next();
 			name = res.getString(3);
 			if (first == true) {
-
+				
 				// changes location to inventory (room 1)
 				statement = connection.createStatement();
 				int result = statement
@@ -110,6 +88,30 @@ public class Commands {
 								+ objectToTake + "'");
 				GUI.addToOptions("\n\nGOO takes the " + name);
 				connection.commit();
+				
+				//objects important to plot, when acquired, produce state changes. you need hasID to be true, for example, to get past security
+				if (objectToTake.equals("id")) {
+					Character.setHasID(true);
+				}
+				if (objectToTake.equals("rover")) {
+					Character.setHasRover(true);
+				}
+
+				if (objectToTake.equals("leather jacket")) {
+					Character.setHasLeatherJacket(true);
+				}
+				if (objectToTake.equals("lanyards")) {
+					Character.setHasLanyard(true);
+				}
+				if (objectToTake.equals("credit cube")) {
+					Character.setHasCreditCube(true);
+				}
+				if (objectToTake.equals("drumset")) {
+					Character.setHasDrums(true);
+				}
+				if (objectToTake.equals("saxophone")) {
+					Character.setHasSaxophone(true);
+				}
 
 				res.close();
 				statement.close();
@@ -125,13 +127,13 @@ public class Commands {
 	public static void dropObject(String command) {
 		int location = Character.getLocation();
 		String objectToDrop = command.substring(5);
+		if(objectToDrop.equals("spacesuit")){Character.setHasSuitOn(false);}
+		if(objectToDrop.equals("leather jacket")){Character.setHasLeatherJacket(false);}
+		if(objectToDrop.equals("id")){Character.setHasID(false);}
+		if(objectToDrop.equals("spacesuit")){Character.setHasLanyard(false);}
+		if(objectToDrop.equals("drumset")){Character.setHasDrums(false);}
+		if(objectToDrop.equals("saxophone")){Character.setHasSaxophone(false);}
 
-		/*
-		 * if (objectToTake.equals("id")) { Character.setHasID(); } if
-		 * (objectToTake.equals("leather jacket")) {
-		 * Character.setHasLeatherJacket(); } if
-		 * (objectToTake.equals("lanyard")) { Character.setHasLanyard(); }
-		 */
 
 		String name = "";
 		try {
@@ -207,8 +209,9 @@ public class Commands {
 
 	}
 
-	//in case you want to give up, take off GOO's spacesuit, and walk on to the moon. :<
+	//in case you want to give up, take off GOO's spacesuit, and make him walk on to the moon without it. :<
 	public static void removeSuit() {
+		Commands.dropObject("drop spacesuit");
 		Character.setHasSuitOn(false);
 		GUI.showResults("GOO removes his spacesuit. Feels good. A little dip in the ocean would be perfect right now. Well, there's no ocean. Maybe a moon stroll then.");
 	}
@@ -303,6 +306,7 @@ public class Commands {
 
 		if (Character.isAlive() == false) {
 			GUI.showResults("GOO is dead. \n\nGAME OVER.");
+			
 
 		}
 

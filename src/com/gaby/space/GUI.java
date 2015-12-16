@@ -117,17 +117,8 @@ public class GUI {
 					String text = commandLine.getText();
 					// remove end of line
 					text = text.replaceAll("(\\r|\\n)", "");
-					/*
-					 * if (onlyNumbers) { int number = 0; try { number =
-					 * Integer.parseInt(text); if (number == 1) {
-					 * showResults(result1); }else if (number == 2){
-					 * showResults(result2); } else {
-					 * options.append("Enter a valid option.\n"); } } catch
-					 * (Exception e) {
-					 * 
-					 * number = 0; options.append("Enter a valid number.\n"); }
-					 * } else {
-					 */
+					
+					//sends command to processcommand method
 					Commands.proccessCommand(text);
 					clearCommandLineText();
 					commandLine.setCaretPosition(0);

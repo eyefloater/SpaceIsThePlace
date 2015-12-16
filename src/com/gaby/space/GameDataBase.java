@@ -85,10 +85,10 @@ public class GameDataBase {
 
 			// database of rooms, FUTURE REVISION would probably have description print only the first
 			// time a room is entered, then print an abbreviated version. 
-			stmt.execute("CREATE TABLE ROOMS (ID INT, NAME VARCHAR(40), DESCRIPTION VARCHAR(7000))");
-			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (1, 'Inventory', '')");
-			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (2, 'Lunar Surface SOUTH', 'About 100 clicks SOUTH of the Zone, GOO comes across an abandoned rover.')");
-			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (3, 'Lunar Surface', 'The glimmering plains outside the Zone. To the NORTH lies the Medtronic enclave with it''s aging, yellowed dome.')");
+			stmt.execute("CREATE TABLE ROOMS (ID INT, NAME VARCHAR(40), DESCRIPTION VARCHAR(7000))");//, SHORTDESCRIPTION VARCHAR(3000))");
+			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (1, 'Inventory', '')");//. '')");
+			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (2, 'Lunar Surface SOUTH', 'About 100 clicks SOUTH of the Zone, GOO comes across an abandoned rover.')");//, 'About 100 clicks SOUTH of the Zone, GOO comes across an abandoned rover.')");
+			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (3, 'Lunar Surface', 'The glimmering plains outside the Zone. To the NORTH lies the Medtronic enclave with it''s aging, yellowed dome.')");//, 'The glimmering plains outside the Zone. To the NORTH lies the Medtronic enclave with it''s aging, yellowed dome.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (4, 'Boardwalk', 'Just inside the airlocks of the dome''s southern edge, the city''s boardwalk extends before GOO, its stained plastic planks lit with overlapping planes of garish neon reds, blues, and sickly greens that emanate from the dense jumble of shuttered tourist shops that loom over its landward side, facing the flickering, 100 year old projected ocean view that runs along the edge of the dome. \n\nTo the NORTH is GOO''s family business, the Space Bar Bar, a one story affair of corrugated plastic, wedged between a brothel and a PayDay Loan shop, both boarded up. A dozen folded Fanta Limon parasols emerge haphazardly from a jumble of plastic tables outside the bar, flapping lamely in the artificial ocean-scented breeze. The bar is brightly lit but deserted; GOO''s cousin Nico is washing glasses. \n\nTo the WEST, your old mining friend Charlie mans the Medtronic security gate, puffing an E-cigarete in his little booth. Beyond him, GOO can hear the grinding hum of Medtronic''s mining facilities. \n\nTo the EAST, the holographic marquee of the Jupiter Club rises out of the cityscape.')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (5, 'Space Bar Bar', 'THE SPACE BAR BAR is indeed quite spacious inside. It is also completely deserted, except for Nico, who stands washing an endless series of glasses in the sink behind the counter. The stereo is playing the usual mixture of 20th century ye-ye, country, and contemporary Algorhythmia pop. GOO sees his wallet ontop of the gaming console, and his cup at a table. GOO''s bedroom is in back, to the NORTH')");
 			stmt.execute("INSERT INTO ROOMS (ID, NAME, DESCRIPTION) VALUES (6, 'Back room', 'This is where GOO sleeps. There''s a small cot, a space heater, Goo''s record player and records, and a large and very dirty pile of clothes. Home sweet home. ')");
@@ -144,9 +144,9 @@ public class GameDataBase {
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (19, 11, 'hugo', 'Your former boss. He''s hardnosed and, GOO imagines, fairly depressed to be literally the only human being at this jobsite. Robots don''t make great company.')");
 
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (20, 12, 'aggie', 'Oh, Aggie. Why are you still on the moon? You''re too good for this place.')");
-
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (21, 13, 'captain', 'This guy looks like your average cruiseship captain, only his white uniform is a few sizes too small, and his hat is just tiny.')");
 			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (22, 6, 'pile of clothes', 'After digging through his great unwashed, GOO comes across his old leather jacket. Still supple and shiny as ever; still the coolest thing he''s ever owned.')");
+			stmt.execute("INSERT INTO OBJECTS (ID, LOCATION, NAME, DESCRIPTION) VALUES (23, 1, 'spacesuit', 'Standard issue Medtronic labor assurance unit. It feels like steel wool.')");
 
 			// commiting sends it from client to the database, checks for errors
 			connection.commit();

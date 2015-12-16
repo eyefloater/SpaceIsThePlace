@@ -75,8 +75,8 @@ public abstract class Character {
 		return hasID;
 	}
 
-	public static void setHasID() {
-		Character.hasID = true;
+	public static void setHasID(boolean hasID) {
+		Character.hasID = hasID;
 	}
 
 	public static boolean hasLanyard() {
@@ -91,8 +91,8 @@ public abstract class Character {
 	public static boolean hasLeatherJacket() {
 		return hasLeatherJacket;
 	}
-	public static void setHasLeatherJacket() {
-		Character.hasLeatherJacket = true;
+	public static void setHasLeatherJacket(boolean hasLeatherJacket) {
+		Character.hasLeatherJacket = hasLeatherJacket;
 	}
 
 	public static boolean hasBigIdea() {
